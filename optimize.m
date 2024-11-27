@@ -9,7 +9,7 @@ function optimize()
     
     % 2. Konvergenzkriterien einstellen
     % Wähle 'grob', 'mittel', oder 'fein'
-    precision = 'mittel';
+    precision = 'fein';
 
     % ------------------------------
     % Parameter definieren
