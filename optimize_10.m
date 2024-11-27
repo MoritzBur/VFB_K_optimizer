@@ -5,7 +5,8 @@ function optimize()
     
     % 1. Optimierungsalgorithmus auswählen
     % Wähle 'nelder-mead', 'finite-difference', 'particle-swarm', oder 'differential-evolution'
-    algorithm = 'finite-difference';
+     algorithm = 'finite-difference';
+    % algorithm = 'nelder-mead';
     
     % 2. Konvergenzkriterien einstellen
     % Wähle 'grob', 'mittel', oder 'fein'
@@ -15,8 +16,14 @@ function optimize()
     % Parameter definieren
     % ------------------------------
     
-    % Startwerte für die 5 Parameter
-    x0 = rand(1, 5);  % Zufällige Startwerte zwischen 0 und 1
+    % Startwerte für die 10 Parameter
+    % x0 = rand(1, 10);  % Zufällige Startwerte zwischen 0 und 1
+    
+    % Startwerte für EI
+    x0 = [0.2, 0.2, 0.2, 0.2, 0.6, 0.2, 0.2, 0.2, 0.2, 0.2,];
+
+    % Startwerte für GI_t
+    % x0 = [0.2, 0.2, 0.2, 0.2, 0.6, 0.2, 0.2, 0.2, 0.2, 0.2,];
 
     % Konvergenzkriterien setzen
     options = optimset(); % Standardoptionen initialisieren
@@ -67,18 +74,18 @@ function optimize()
             if exist('particleswarm', 'file') ~= 2
                 error('PSO benötigt die Global Optimization Toolbox.');
             end
-            lb = zeros(1, 5); % Untergrenzen
-            ub = ones(1, 5);  % Obergrenzen
-            [x_opt, fval] = particleswarm(@objective_function, 5, lb, ub, options);
+            lb = zeros(1, 10); % Untergrenzen
+            ub = ones(1, 10);  % Obergrenzen
+            [x_opt, fval] = particleswarm(@objective_function, 10, lb, ub, options);
             
         case 'differential-evolution'
             % Differential Evolution (DE)
             if exist('ga', 'file') ~= 2
                 error('Differential Evolution benötigt die Global Optimization Toolbox.');
             end
-            lb = zeros(1, 5); % Untergrenzen
-            ub = ones(1, 5);  % Obergrenzen
-            [x_opt, fval] = ga(@objective_function, 5, [], [], [], [], lb, ub, [], options);
+            lb = zeros(1, 10); % Untergrenzen
+            ub = ones(1, 10);  % Obergrenzen
+            [x_opt, fval] = ga(@objective_function, 10, [], [], [], [], lb, ub, [], options);
             
         otherwise
             error('Unbekannter Algorithmus: %s', algorithm);

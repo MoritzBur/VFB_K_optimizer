@@ -6,7 +6,7 @@ function fem_model_dummy()
     fprintf('Eingelesene Parameter: %s\n', mat2str(params)); % Neue Ausgabe
 
     % Beispiel-Fehlerberechnung (Dummy-Modell)
-    true_params = 0.5 * ones(1, 5); % "Wahre" Parameter (zum Testen, jetzt Länge 5)
+    true_params = 0.5 * ones(1, 10); % "Wahre" Parameter (zum Testen)
     error = sum((params - true_params).^2);
 
     % Fehler in results.out speichern
